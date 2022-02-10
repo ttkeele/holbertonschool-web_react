@@ -25,3 +25,14 @@ const createEmployee = (firstName: string, lastName: string, salary: number | st
   if (Number(salary) < 500) return new Teacher
   else return new Director;
 }
+
+//task 6
+export function isDirector(employee: TeacherInterface | DirectorInterface): employee is Director {
+  return (employee as Director).workDirectorTasks !== undefined;
+}
+
+export function executeWork(employee: DirectorInterface | TeacherInterface): string {
+  let result = undefined;
+  (isDirector(employee)) ? result = employee.workDirectorTasks() : result = employee.workTeacherTasks();
+  return result;
+}
