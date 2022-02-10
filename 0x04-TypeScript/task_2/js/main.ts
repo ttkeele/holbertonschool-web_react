@@ -36,3 +36,17 @@ export function executeWork(employee: DirectorInterface | TeacherInterface): str
   (isDirector(employee)) ? result = employee.workDirectorTasks() : result = employee.workTeacherTasks();
   return result;
 }
+
+// task 7
+type Subjects = "Math" | "History";
+
+export function teachClass(todayClass: Subjects): string {
+  if (todayClass == "Math") {
+    return "Teaching Math";
+  } else if (todayClass === "History") {
+    return "Teaching History";
+  }
+}
+
+console.log(teachClass("Math"));
+console.log(teachClass("History"));
