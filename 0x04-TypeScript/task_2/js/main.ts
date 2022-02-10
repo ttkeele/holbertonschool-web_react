@@ -15,3 +15,13 @@ class Director implements DirectorInterface {
   getCoffeeBreak = () => 'Getting a coffee break';
   workDirectorTasks = () => 'Getting to director tasks';
 }
+class Teacher implements TeacherInterface {
+  workFromHome = () => 'Cannot work from home';
+  getCoffeeBreak = () => 'Cannot have a break';
+  workTeacherTasks = () => 'Getting to work';
+}
+
+const createEmployee = (firstName: string, lastName: string, salary: number | string) => {
+  if (Number(salary) < 500) return new Teacher
+  else return new Director;
+}
