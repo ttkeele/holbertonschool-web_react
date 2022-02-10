@@ -10,20 +10,39 @@ interface TeacherInterface {
   workTeacherTasks(): string;
 }
 
-class Director implements DirectorInterface {
-  workFromHome = () => 'Working from home';
-  getCoffeeBreak = () => 'Getting a coffee break';
-  workDirectorTasks = () => 'Getting to director tasks';
-}
-class Teacher implements TeacherInterface {
-  workFromHome = () => 'Cannot work from home';
-  getCoffeeBreak = () => 'Cannot have a break';
-  workTeacherTasks = () => 'Getting to work';
+export class Director implements DirectorInterface {
+  workFromHome(): string {
+    console.log("Working from home");
+    return "Working from home";
+  }
+
+  getCoffeeBreak(): string {
+    console.log("Getting a coffe break");
+    return "Getting a coffe break";
+  }
+
+  workDirectorTasks(): string {
+    console.log("Getting director tasks");
+    return "Getting director tasks";
+  }
 }
 
-const createEmployee = (firstName: string, lastName: string, salary: number | string) => {
-  if (Number(salary) < 500) return new Teacher
-  else return new Director;
+export class Teacher implements TeacherInterface {
+  workFromHome(): string {
+    return "Cannot work from home";
+  }
+  getCoffeeBreak(): string {
+    return "Cannot have a break";
+  }
+  workTeacherTasks(): string {
+    return "Getting to work";
+  }
+}
+
+export function createEmployee(salary: number | string): Teacher | Director {
+  if (typeof salary === "number" && salary < 500) return new Teacher();
+
+  return new Director();
 }
 
 //task 6
@@ -37,6 +56,10 @@ export function executeWork(employee: DirectorInterface | TeacherInterface): str
   return result;
 }
 
+// executeWork(createEmployee(200));
+// executeWork(createEmployee(1000));
+
+
 // task 7
 type Subjects = "Math" | "History";
 
@@ -48,5 +71,5 @@ export function teachClass(todayClass: Subjects): string {
   }
 }
 
-console.log(teachClass("Math"));
-console.log(teachClass("History"));
+// console.log(teachClass("Math"));
+// console.log(teachClass("History"));
