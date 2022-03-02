@@ -1,1 +1,1 @@
-0x04. Webpack
+0x04. Webpack project
