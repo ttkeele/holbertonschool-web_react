@@ -15,7 +15,7 @@ const Notifications = () => {
         }}
         aria-label="close"
       >
-        <img src={closeIcon} alt="close-icon" />
+        <img src={closeIcon} alt="close-icon"/>
       </button>
       <p>Here is the list of notifications</p>
       <ul>
