@@ -2,7 +2,7 @@
     text-align: center;
     min-height: 100vh;
 }
-/* Application Header Secttion */
+
 .App-logo {
     height: 40vmin;
     pointer-events: none;
@@ -27,7 +27,7 @@ div {
     color: #61dafb;
 }
 
-/*Application body section*/
+
 
 .App-body {
     padding: 36px 24px;
@@ -41,7 +41,7 @@ div {
     justify-content: left;
 }
 
-/*Application Footer section*/
+
 .App-footer {
     width: 100%;
 }

@@ -2,22 +2,25 @@ const path = require("path");
 
 module.exports = {
     mode: "development",
-    devtool: "inline-source-map",
     entry: "./src/index.js",
+    devtool: 'inline-source-map',
     output: {
 	filename: "bundle.js",
 	path: path.resolve("./dist"),
     },
+    performance: {
+	maxAssetSize: 100000,
+	maxEntrypointSize: 100000,
+	hints: false,
+    },
     devServer: {
 	hot: true,
-	contentBase: path.resolve("./dist"),
 	compress: true,
-	port: 8564,
     },
     module: {
       rules: [
 	{
-	  test: /\.(js|jsx)$/,
+	  test: /\.js|\.jsx$/,
 	  exclude: /node_modules/,
 	  loader: "babel-loader",
 	},

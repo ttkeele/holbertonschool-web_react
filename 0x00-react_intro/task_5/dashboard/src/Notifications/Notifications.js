@@ -6,25 +6,26 @@ import closeIcon from "../assets/close-icon.png";
 const Notifications = () => {
     return (
       <div className="Notifications">
-	<button
-	  style={{
-	    background: "transparent",
-	    border: "none",
-	    position: "absolute",
-	    right: 20,
+	<button style={{
+	      top: '10px',
+	      right: '50px',
+	      width: '32px',
+	      height: '32px',
+	      position: 'absolute',
+	      background: 'none',
+	      border: 'none',
 	  }}
 	aria-label="close"
-	>
-	    <img src={closeIcon} alt="close-icon" />
+	onClick={() => {
+	    console.log("Close button has been clicked");
+	}}
+	 <img src={closeIcon} alt="close-icon" />
 	 </button>
 	 <p>Here is the list of notifications</p>
 	 <ul>
 	    <li data-priority="default">New course available</li>
 	    <li data-priority="urgent">New resume available</li>
-	    <li
-	data-priority="urgent"
-	dangerouslySetInnerHTML={{ __html: getLatestNotification() }}
-	    ></li>
+	    <li data-priority="urgent" className='urgent' dangerouslySetInnerHTML={{ __html: getLatestNotification() }}></li>
 	 </ul>
       </div>
     );
