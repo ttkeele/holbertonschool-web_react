@@ -9,7 +9,7 @@ module.exports = {
     devServer: {
         hot: true,
         compress: true,
-        disableHostCheck: true,
+        allowedHosts: 'all'
     },
     output: {
       path: path.resolve('./dist'),
