@@ -4,19 +4,21 @@ module.exports = {
     mode: "development",
     entry: "./src/index.js",
     devtool: 'inline-source-map',
+	devServer: {
+		hot: true,
+		compress: true,
+	},
     output: {
-	filename: "bundle.js",
-	path: path.resolve("./dist"),
+	path: path.resolve('./dist'),
+	filename: 'bundle.js',
+	
     },
     performance: {
 	maxAssetSize: 100000,
 	maxEntrypointSize: 100000,
 	hints: false,
     },
-    devServer: {
-	hot: true,
-	compress: true,
-    },
+    
     module: {
       rules: [
 	{
@@ -35,8 +37,8 @@ module.exports = {
             {
 	      loader: "image-webpack-loader",
 	      options: {
-		bypassOnDebug: true, // webpack@1.x
-		disable: true, // webpack@2.x and newer
+		    bypassOnDebug: true, 
+		    disable: true, 
 	      },
 	    },
           ],
