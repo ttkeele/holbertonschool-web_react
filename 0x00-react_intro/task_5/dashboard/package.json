@@ -12,11 +12,17 @@
   "author": "ttkeele",
   "license": "ISC",
   "dependencies": {
-    "css-loader": "^6.6.0",
+    "@testing-library/jest-dom": "^5.16.2",
+    "babel-core": "^6.26.3",
+    "css-loader": "^6.7.1",
+    "enzyme": "^3.11.0",
+    "enzyme-adapter-react-16": "^1.15.6",
+    "identity-obj-proxy": "^3.0.0",
     "image-webpack-loader": "^8.1.0",
     "react": "^16.14.0",
     "react-dom": "^16.14.0",
-    "style-loader": "^3.3.1"
+    "style-loader": "^3.3.1",
+    "uuid": "^7.0.3"
   },
   "devDependencies": {
     "@babel/core": "^7.17.2",

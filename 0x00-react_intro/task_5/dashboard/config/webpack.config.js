@@ -7,6 +7,7 @@ module.exports = {
     devServer: {
         hot: true,
         compress: true,
+	static: ["./dist"]
     },
     output: {
       path: path.resolve('./dist'),
