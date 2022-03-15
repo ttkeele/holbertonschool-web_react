@@ -1,14 +1,11 @@
-.App-body {
-    padding: 36px 24px;
-   
-    min-height: 60vmin;
-    
-  }
-  .App-body .formName, .App-body p {
-    display: flex;
-    justify-content: left;
-  }
-  
-  #email, #password, label {
-    margin-right: 5px;
-  }
+:root {
+  --main-color: #e01d3f;
+}
+
+.login {
+  margin: 50px;
+}
+.login input {
+  margin-left: 20px;
+  margin-right: 20px;
+}

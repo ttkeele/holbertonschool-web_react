@@ -1,17 +1,26 @@
-.Notifications {
-    border: 2px dashed #DF344B;
-    padding: auto;
-}
-
-#button-img {
-    height: 10px;
+:root {
+    --main-color: #e01d3f;
+  }
+  
+  .Notifications {
+    border: 3px dashed var(--main-color);
+    padding: 10px;
+    margin-bottom: 20px;
+  }
+  
+  .Notifications button img {
     width: 10px;
-}
-
-#default {
+  }
+  
+  .Notifications p {
+    margin: 0;
+    margin-top: 15px;
+  }
+  
+  [data-priority="default"] {
     color: blue;
-}
-
-.urgent {
+  }
+  
+  [data-priority="urgent"] {
     color: red;
-}
+  }

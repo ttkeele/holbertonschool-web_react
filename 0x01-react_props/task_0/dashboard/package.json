@@ -1,5 +1,5 @@
 {
-    "name": "dashboard",
+    "name": "task_0",
     "version": "1.0.0",
     "description": "",
     "main": "index.js",
@@ -12,11 +12,15 @@
     "author": "ttkeele",
     "license": "ISC",
     "dependencies": {
+      "@testing-library/jest-dom": "^5.11.9",
+      "@testing-library/react": "^11.2.5",
+      "@testing-library/user-event": "^12.7.1",
       "css-loader": "^6.6.0",
       "image-webpack-loader": "^8.1.0",
       "react": "^16.14.0",
       "react-dom": "^16.14.0",
       "style-loader": "^3.3.1"
+      
     },
     "devDependencies": {
       "@babel/core": "^7.17.2",
@@ -37,8 +41,8 @@
     },
     "jest": {
       "moduleNameMapper": {
-        ".+\\.(css|styl|less|sass|scss|png|jpg|ttf|woff|woff2)$": "jest-transform-stub",
-        "\\.(css|less)$": "identity-obj-proxy"
+        "\\.(css|sass)$": "<rootDir>/__mocks__/styleMock.js",
+        "\\.(jpg|jpeg|png|gif|ttf|eot|svg)$": "<rootDir>/__mocks__/fileMock.js"
       }
     }
   }
