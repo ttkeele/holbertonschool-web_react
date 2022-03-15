@@ -8,10 +8,6 @@ module.exports = {
         hot: true,
 	contentBase: path.resolve("./dist"),
         compress: true,
-<<<<<<< HEAD
-=======
-        port: 8080,
->>>>>>> 3a51df7d7a050b90bd041c08d105fec8ac1cb199
     },
     output: {
       path: path.resolve('./dist'),
@@ -48,8 +44,4 @@ module.exports = {
         }
       ],
     },
-<<<<<<< HEAD
   };
-=======
-};
->>>>>>> 3a51df7d7a050b90bd041c08d105fec8ac1cb199
