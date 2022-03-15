@@ -4,8 +4,9 @@
 
 .login {
   margin: 50px;
+  flex-grow: 1;
 }
 .login input {
-  margin-left: 20px;
+  margin-left: 10px;
   margin-right: 20px;
 }
