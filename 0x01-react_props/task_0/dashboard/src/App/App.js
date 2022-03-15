@@ -1,23 +1,25 @@
-import logo from '../assets/holberton_logo.jpg';
-import './App.css';
-import Notifications from '../Notifications/Notifications.js';
-import Login from '../Login/Login.js';
-import Footer from '../Footer/Footer.js';
-import Header from '../Header/Header.js';
-import React from 'react';
+import React from "react";
+import Notifications from "../Notifications/Notifications";
+import Header from "../Header/Header";
+import Login from "../Login/Login";
+import Footer from "../Footer/Footer";
+import "./App.css";
 
 function App() {
   return (
-    <React.Fragment>
+    <>
       <Notifications />
-    <div className="App">
-      <Header />
-      <Login />
-      <Footer />
-    </div>
-    </React.Fragment>
+      <div className="App">
+        <Header />
+      </div>
+      <div className="App-body">
+        <Login />
+      </div>
+      <div className="App-footer">
+        <Footer />
+      </div>
+    </>
   );
 }
-
 
 export default App;
