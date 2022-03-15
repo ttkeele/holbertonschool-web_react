@@ -1,12 +1,12 @@
 import { getFullYear, getFooterCopy, getLatestNotification } from "./utils"
 describe("getFullYear", () => {
-    it("returns correct year", () => {
+    it("Verify returns the right year", () => {
         expect(getFullYear()).toEqual(new Date().getFullYear());
     });
 });
 
 describe("getFooterCopy", () => {
-    it("When passed true", () => {
+    it("Verify when passed true", () => {
         expect(getFooterCopy(true)).toEqual("Holberton School");
     });
 
@@ -16,7 +16,7 @@ describe("getFooterCopy", () => {
 });
 
 describe("getLatestNotification", () => {
-    it("getting string back", () => {
+    it("Verify return statement is correct", () => {
         expect(getLatestNotification()).toEqual("<strong>Urgent requirement</strong> - complete by EOD");
     });
 });

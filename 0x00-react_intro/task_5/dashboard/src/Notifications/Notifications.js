@@ -14,10 +14,10 @@ const Notifications = () => {
                 background: 'none',
                 border: 'none',
             }}
-            aria-label="Close"
-           onClick={() => {
-               console.log("Close button has been clicked");
-           }}
+                aria-label="Close"
+                onClick={() => {
+                    console.log("Close button has been clicked");
+                }}
             ><img src={closeIcon} alt='close-icon' id="button-img"></img>
             </button>
             <p>Here is the list of notifications</p>
