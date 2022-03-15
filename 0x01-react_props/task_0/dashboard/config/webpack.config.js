@@ -1,43 +1,55 @@
 const path = require("path");
+// const HtmlWebpackPlugin = require('html-webpack-plugin');
+// const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 
 module.exports = {
-  mode: "development",
-  devtool: "inline-source-map",
-  entry: "./src/index.js",
-  output: {
-    filename: "bundle.js",
-    path: path.resolve("./dist"),
-  },
-  devServer: {
-    hot: true,
-    contentBase: path.resolve("./dist"),
-    compress: true,
-    port: 8080,
-  },
-  module: {
-    rules: [
-      {
-        test: /\.(js|jsx)$/,
-        exclude: /node_modules/,
-        loader: "babel-loader",
-      },
-      {
-        test: /\.css$/i,
-        use: ["style-loader", "css-loader"],
-      },
-      {
-        test: /\.(gif|png|jpe?g|svg)$/i,
-        use: [
-          "file-loader",
-          {
-            loader: "image-webpack-loader",
-            options: {
-              bypassOnDebug: true, // webpack@1.x
-              disable: true, // webpack@2.x and newer
+    mode: 'development',
+    entry: './src/index.js',
+    devtool: 'inline-source-map',
+    devServer: {
+        hot: true,
+        compress: true,
+        static: ["./dist"]
+    },
+    output: {
+      path: path.resolve('./dist'),
+      filename: 'bundle.js',
+    },
+    performance: {
+      maxAssetSize: 100000,
+      maxEntrypointSize: 100000,
+      hints: false,
+    },
+    module: {
+      rules: [
+        {
+          test: /\.js|\.jsx$/,
+          exclude: /node_modules/,
+          loader: 'babel-loader',
+        },
+        {
+          test: /\.css$/i,
+          use: [ "style-loader", "css-loader" ],
+        },
+        {
+          test: /\.(gif|png|jpe?g|svg)$/i,
+          use: [
+            'file-loader',
+            {
+              loader: 'image-webpack-loader',
+              options: {
+                bypassOnDebug: true,
+                disable: true,
+              },
             },
-          },
-        ],
-      },
-    ],
-  },
+          ],
+        }
+      ],
+    },
+    // plugins: [
+    //   new CleanWebpackPlugin(),
+    //   new HtmlWebpackPlugin({
+    //     template: path.join(__dirname, "dist", "index.html"),
+    //   }),
+    // ],
 };
