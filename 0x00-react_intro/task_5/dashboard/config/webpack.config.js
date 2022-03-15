@@ -6,7 +6,6 @@ module.exports = {
     devtool: 'inline-source-map',
     devServer: {
         hot: true,
-	contentBase: path.resolve("./dist"),
         compress: true,
     },
     output: {
