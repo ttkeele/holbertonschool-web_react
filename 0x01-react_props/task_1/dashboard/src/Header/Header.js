@@ -5,7 +5,7 @@ import "./Header.css";
 function Header() {
   return (
     <div className="header">
-      <img src={holberton_logo} />
+      <img src={holberton_logo} alt=""/>
       <h1>School dashboard</h1>
     </div>
   );
