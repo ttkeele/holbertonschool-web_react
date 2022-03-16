@@ -9,7 +9,9 @@ module.exports = {
     devServer: {
         hot: true,
         compress: true,
-        allowedHosts: 'all'
+        allowedHosts: 'all',
+        contentBase: path.resolve(__dirname, "dist"),
+        publicPath: "/assets",
     },
     output: {
       path: path.resolve('./dist'),
