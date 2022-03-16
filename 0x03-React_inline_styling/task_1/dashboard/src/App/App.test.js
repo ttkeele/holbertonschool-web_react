@@ -6,15 +6,20 @@ import Notifications from '../Notifications/Notifications.js';
 import Header from '../Header/Header.js';
 import Login from '../Login/Login.js';
 import Footer from '../Footer/Footer.js';
-// import { expect } from 'chai';
 import CourseList from '../CourseList/CourseList';
+import { StyleSheetTestUtils } from 'aphrodite';
 
 describe("<App>", () => {
 	let wrapper;
 
 	beforeEach(() => {
 		wrapper = shallow(<App />);
+        StyleSheetTestUtils.suppressStyleInjection();
 	});
+
+    afterEach(() => {
+        StyleSheetTestUtils.clearBufferAndResumeStyleInjection();
+    });
 
 	it("<App /> is rendered without crashing", () => {
 		expect(wrapper.exists()).toBe(true);
@@ -47,7 +52,12 @@ describe("<App />", () => {
 
 	beforeEach(() => {
 		wrapper = shallow(<App isLoggedIn={true}/>);
+        StyleSheetTestUtils.suppressStyleInjection();
 	});
+
+    afterEach(() => {
+        StyleSheetTestUtils.clearBufferAndResumeStyleInjection();
+    });
 
     it("Tests App when is logged in to see logged in componet", () => {
         expect(wrapper.exists(Login)).toEqual(false);
@@ -59,6 +69,14 @@ describe("<App />", () => {
 })
 
 describe("<App /> ", () => {
+    beforeEach(() => {
+        StyleSheetTestUtils.suppressStyleInjection();
+	});
+
+    afterEach(() => {
+        StyleSheetTestUtils.clearBufferAndResumeStyleInjection();
+    });
+
     it("Mocks Alert('Logging you out') when pressing Ctrl + h", () => {
         let events = {};
         const myLogOut = jest.fn(() => undefined);
