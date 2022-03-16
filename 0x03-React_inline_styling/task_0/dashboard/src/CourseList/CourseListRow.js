@@ -1,21 +1,22 @@
 import PropTypes, { bool } from 'prop-types';
 import React from 'react';
 
+
 const CourseListRow = ({ isHeader, textFirstCell, textSecondCell }) => {
     if (isHeader && textSecondCell === null) {
         return <tr><th colSpan={2}>{textFirstCell}</th></tr>;
     } else if (isHeader && textSecondCell !== null) {
         return (
             <tr>
-                <th>{textFirstCell}</th>
-                <th>{textSecondCell}</th>
+                <th style={{backgroundColor: '#deb5b545'}}>{textFirstCell}</th>
+                <th style={{backgroundColor: '#deb5b545'}}>{textSecondCell}</th>
             </tr>
         );
     } else if (!isHeader) {
         return (
             <tr>
-                <td>{textFirstCell}</td>
-                <td>{textSecondCell}</td>
+                <td style={{backgroundColor: '#f5f5f5ab'}}>{textFirstCell}</td>
+                <td style={{backgroundColor: '#f5f5f5ab'}}>{textSecondCell}</td>
             </tr>
         );
     }
