@@ -13,6 +13,7 @@
   "author": "ttkeele",
   "license": "ISC",
   "dependencies": {
+    "aphrodite": "^2.4.0",
     "chai": "^4.3.6",
     "css-loader": "^6.6.0",
     "image-webpack-loader": "^8.1.0",
