@@ -8,7 +8,8 @@ import React from 'react';
 import PropTypes from 'prop-types'
 import CourseList from '../CourseList/CourseList.js';
 import { getLatestNotification } from '../utils/utils';
-
+import BodySectionWithMarginBottom from '../BodySection/BodySectionWithMarginBottom.js'
+import BodySection from '../BodySection/BodySection.js';
 
 class App extends React.Component {
   constructor(props) {
@@ -52,8 +53,19 @@ class App extends React.Component {
       <div className="App">
         <Header />
         <div className='App-body'>
-          {this.props.isLoggedIn ? <CourseList listCourses={this.props.listCourses}/> : <Login />}
+          {this.props.isLoggedIn ? (
+            <BodySectionWithMarginBottom title='Course list'>
+              <CourseList listCourses={listCourses}/> 
+           </BodySectionWithMarginBottom>
+          ) : (
+            <BodySectionWithMarginBottom title={'Log in to continue'}>
+              <Login />
+            </BodySectionWithMarginBottom>
+          )}
         </div>
+        <BodySection title='News from the School'>
+          <p>School is Over!!!</p>
+        </BodySection>
         <Footer />
       </div>
       </React.Fragment>

@@ -72,13 +72,6 @@ describe("<App /> ", () => {
         events.keydown({ key: "h", ctrlKey: true })
         expect(myLogOut).toHaveBeenCalled();
         expect(window.alert).toHaveBeenCalledWith("Logging you out");
-        // const myLogOut = jest.fn(() => undefined);
-
-        // const appComp = mount(<App logOut={myLogOut} />);
-        // const log = jest.spyOn(console, 'log');
-        
-        // expect(appComp.props.logOut);
-        // expect(log);
     
         jest.restoreAllMocks();    
         
