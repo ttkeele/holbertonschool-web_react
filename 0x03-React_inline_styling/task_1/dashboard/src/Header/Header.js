@@ -1,4 +1,4 @@
-import holberton_logo from '../assets/HolbertonLogo.jpg';
+import holberton_logo from '../assets/holberton_logo.jpg';
 import { getFooterCopy, getFullYear } from '../utils/utils.js';
 import { StyleSheet, css } from 'aphrodite';
 
