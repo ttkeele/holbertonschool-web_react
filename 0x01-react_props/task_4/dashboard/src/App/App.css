@@ -2,7 +2,8 @@
     text-align: center;
     min-height: 100vh;
   }
- 
+  
+
   .App-logo {
     height: 40vmin;
     pointer-events: none;
@@ -27,12 +28,12 @@
     color: #61dafb;
   }
   
- 
+  
   
   .App-body {
     padding: 36px 24px;
-    min-height: 60vmin;
-    
+    min-height: 65vmin;
+  
   }
   .App-body .formName, .App-body p {
     display: flex;
@@ -40,6 +41,7 @@
   }
   
  
+
   .App-footer {
     width: 100%;
   }
