@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { StyleSheet, css } from 'aphrodite'
 
-// {type, value, html, className}
 class NotificationItem extends React.Component {
     render() {
         let {
@@ -12,16 +12,19 @@ class NotificationItem extends React.Component {
             className,
             markAsRead,
         } = this.props;
+
+        let styleLi = (type === "urgent") ? styles.urgentNotif : styles.defaultNotif;
         
         if (!html) {
             return (
                 <li data-notification-type={type}
-                className={className}
+                className={css(styleLi)}
                 >{value}</li>
             )
         } else {
             return (
                 <li data-notification-type={type}
+                className={css(styleLi)}
                 dangerouslySetInnerHTML={html}
                 className={className}
                 onClick={() => markAsRead(id)}
@@ -30,6 +33,30 @@ class NotificationItem extends React.Component {
         }
     }
 }
+
+const screenSize = {
+    small: '@media screen and (max-width: 900px)',
+  };
+  
+  const Small = {
+      padding: '10px 8px',
+      borderBottom: '1px solid black',
+      listStyle: 'none',
+      fontSize: '20px',
+  };
+  
+
+const styles = StyleSheet.create({
+	defaultNotif: {
+		color: 'blue',
+        [screenSize.small]: Small,
+	},
+	urgentNotif: {
+		color: 'red',
+        [screenSize.small]: Small,
+	},
+});
+
 NotificationItem.defaultProps = {
     type: "default",
     value: "",
