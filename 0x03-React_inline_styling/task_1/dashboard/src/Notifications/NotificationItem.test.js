@@ -2,7 +2,7 @@ import { shallow } from 'enzyme';
 import NotificationItem from "./NotificationItem.js";
 import React from 'react';
 import "../../config/setupTests"
-// import { expect } from 'chai'
+import { StyleSheetTestUtils } from 'aphrodite';
 
 describe("Testing the <NotificationItem /> componet renders", () => {
 

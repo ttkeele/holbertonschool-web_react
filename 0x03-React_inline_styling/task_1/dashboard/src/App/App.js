@@ -1,4 +1,4 @@
-import logo from '../assets/holberton_logo.jpg';
+import holberton_logo from '../assets/holberton_logo.jpg';
 import Notifications from '../Notifications/Notifications.js';
 import Login from '../Login/Login.js';
 import Footer from '../Footer/Footer.js';

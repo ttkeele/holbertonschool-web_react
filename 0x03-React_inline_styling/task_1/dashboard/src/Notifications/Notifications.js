@@ -7,12 +7,21 @@ import closeIcon from '../assets/close-Icon.png';
 import { getLatestNotification } from '../utils/utils.js';
 import NotficationItem from './NotificationItem.js'
 import NotificationItemShape from './NotificationItemShape.js';
+import { StyleSheet, css } from 'aphrodite';
 
-// = ({ displayDrawer, listNotifications }) => 
-class Notifications extends React.Component {
+
+class Notifications extends React.PureComponent {
+
     constructor(props) {
         super(props);
         this.markAsRead = this.markAsRead.bind(this);
+    }
+
+    shouldComponentUpdate(nextProps) {
+        if(this.props.listNotifications.length < nextProps.listNotifications.length) {
+            return true
+        }
+        return false
     }
 
     markAsRead(id) {
@@ -22,10 +31,10 @@ class Notifications extends React.Component {
     render() {
         return (
             <React.Fragment>
-            <div className='menuItem'><p>Your notifications</p></div>
+            <div className={css(styles.MenuItem)}><p>Your notifications</p></div>
             {
                 this.props.displayDrawer && (
-                <div className='Notifications'>
+                <div className={css(styles.Notifications)}>
                     <button style={{
                         right: '1%',
                         width: '32px',
@@ -38,7 +47,7 @@ class Notifications extends React.Component {
                    onClick={() => {
                        console.log("Close button has been clicked");
                    }}
-                    ><img src={closeIcon} alt='close-icon' id="button-img"></img>
+                    ><img src={closeIcon} alt='close-icon' className={css(styles.ButtonImg)}></img>
                     </button>
                     {
 						this.props.listNotifications.length === 0 &&
@@ -49,21 +58,12 @@ class Notifications extends React.Component {
                     <React.Fragment>
                     <p>Here is the list of notifications</p>
                     <ul>
-                    {/* {this.props.listNotifications.length === 0 && (
-                        <>
-                        <NotificationItem
-                            className="default"
-                            value='No new notification for now'
-                            key={0}
-                        />
-                        </>
-                    )} */}
-                    {this.props.listNotifications.map((notification) => (
+                    {this.props.listNotifications.map((notification, index) => (
                         <>
                         <NotficationItem        
                             className={notification.type}  
                             id={notification.id}          
-                            key={notification.id}
+                            key={index}
                             type={notification.type}
                             value={notification.value}
                             html={notification.html}
@@ -82,6 +82,33 @@ class Notifications extends React.Component {
         );
     }
 };
+const styles = StyleSheet.create({
+    Notifications: {
+        border: "2px dashed #DF344B",
+        height: "120px",
+        width: "30%",
+        position: "absolute",
+        left: "66%",
+        top: "16%",
+    },
+    ButtonImg: {
+        height: "10px",
+        width: "10px",
+    },
+    default: {
+        color: "blue"
+    },
+    urgent: {
+        color: "red"
+    },
+    MenuItem: {
+        height: "6%",
+        width: "12%",
+        position: "absolute",
+        left: "85%",
+        top: "10%",
+    }
+});
 
 Notifications.propTypes = {
     displayDrawer: PropTypes.bool,

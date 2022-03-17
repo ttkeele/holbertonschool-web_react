@@ -1,4 +1,4 @@
-import logo from '../assets/holberton_logo.jpg';
+import holberton_logo from '../assets/holberton_logo.jpg';
 import './Footer.css';
 import { getFooterCopy, getFullYear } from '../utils/utils.js'
 

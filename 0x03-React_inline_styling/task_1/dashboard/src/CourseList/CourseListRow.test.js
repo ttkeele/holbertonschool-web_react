@@ -2,9 +2,17 @@ import { shallow } from 'enzyme';
 import React from 'react';
 import "../../config/setupTests"
 import { expect } from 'chai'
-import CourseListRow from './CourseListRow.js'
+import CourseListRow from './CourseListRow.js';
+import { StyleSheetTestUtils } from 'aphrodite';
 
 describe("Testing the <CourseListRow /> componet renders", () => {
+    beforeEach(() => {
+        StyleSheetTestUtils.suppressStyleInjection();
+    });
+
+    afterEach(() => {
+        StyleSheetTestUtils.clearBufferAndResumeStyleInjection();
+    });
 
     it("Tests to see if header is True and contains col", () => {
         let props = {

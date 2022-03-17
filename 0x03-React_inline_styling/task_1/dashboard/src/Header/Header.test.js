@@ -3,13 +3,18 @@ import { shallow } from 'enzyme';
 import React from 'react';
 import '../../config/setupTests';
 import { expect } from 'chai';
+import { StyleSheetTestUtils } from 'aphrodite';
 
 describe("Testing the <Header /> componet", () => {
     let wrapper;
-
     beforeEach(() => {
-        wrapper = shallow(<Header />)
+        wrapper = shallow(<Header />);
+        StyleSheetTestUtils.suppressStyleInjection();
     })
+    afterEach(() => {
+        StyleSheetTestUtils.clearBufferAndResumeStyleInjection();
+    });
+
     it("Header componet loads", () => {
         expect(wrapper.render()).to.not.be.an("undefined")
     });

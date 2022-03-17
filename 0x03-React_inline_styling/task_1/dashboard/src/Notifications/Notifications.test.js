@@ -1,14 +1,15 @@
-import { shallow } from 'enzyme';
+import { shallow, mount } from 'enzyme';
 import Notifications from "./Notifications";
 import React from 'react';
 import "../../config/setupTests"
 import NotificationItem from './NotificationItem';
-// import { expect } from 'chai';
+import { StyleSheetTestUtils } from 'aphrodite';
 import { getLatestNotification } from "../utils/utils";
  
 describe("Testing the <Notifications /> componet", () => {
     let listNotifications;
     let latestNotification;
+
     beforeEach(() => {
         latestNotification = getLatestNotification();
         listNotifications = [
@@ -16,8 +17,12 @@ describe("Testing the <Notifications /> componet", () => {
           { id: 2, type: "urgent", value: "New resume available" },
           { id: 3, type: "urgent", html: { __html: latestNotification } },
         ];
-      });
+        StyleSheetTestUtils.suppressStyleInjection();
+    });
 
+    afterEach(() => {
+      StyleSheetTestUtils.clearBufferAndResumeStyleInjection();
+    });
     it("test Notifications Render", () => {
         const wrapper = shallow(<Notifications displayDrawer listNotifications={listNotifications}/>);
         expect(wrapper.exists()).toEqual(true);
@@ -78,6 +83,9 @@ describe("<Notifications />", () => {
           { id: 3, type: "urgent", html: { __html: latestNotification } },
         ];
       });
+      afterEach(() => {
+        StyleSheetTestUtils.clearBufferAndResumeStyleInjection();
+      });
 
       it("Notifications renders Notification Items and items have correct html", () => {
         const wrapper = shallow(
@@ -101,6 +109,13 @@ describe("<Notifications />", () => {
 })
 
 describe("<Notifications />", () => {
+  beforeEach(() => {
+    StyleSheetTestUtils.suppressStyleInjection();
+  });
+
+  afterEach(() => {
+    StyleSheetTestUtils.clearBufferAndResumeStyleInjection();
+  });
   it("Mock of Console.log", () => {
     const wrapper = shallow(<Notifications displayDrawer />);
     console.log = jest.fn()
@@ -111,3 +126,49 @@ describe("<Notifications />", () => {
     jest.restoreAllMocks();    
   })
 });
+
+describe("<Notification /> ", () => {
+
+  let wrapper
+  let i;
+  let propsNotif = {
+		displayDrawer: true,
+		listNotifications: listNotifications,
+	};
+  let listNotifications = [
+		{
+			id: i++,
+			type: "default",
+			value: "New course available",
+		},
+		{
+			id: i++,
+			type: "urgent",
+			value: "New resume available",
+		},
+		{
+			id: i++,
+			type: "urgent",
+			html: {__html: getLatestNotification()},
+		}
+	];
+  beforeEach(() => {
+    StyleSheetTestUtils.suppressStyleInjection();
+});
+
+  afterEach(() => {
+    StyleSheetTestUtils.clearBufferAndResumeStyleInjection();
+  });
+
+  const spyNotif = jest.spyOn(Notifications.prototype, 'shouldComponentUpdate');
+  beforeEach(() => {
+    wrapper = shallow(<Notifications {...propsNotif} />);
+  })
+
+  it("Tests that notifications does not rerender if the same", () => {
+    const NotifComp = mount(<Notifications {...propsNotif}/>);
+    expect(spyNotif);
+    NotifComp.setProps({...propsNotif});
+  })
+
+})

@@ -3,14 +3,20 @@ import { shallow } from 'enzyme';
 import React from 'react';
 import "../../config/setupTests"
 import { expect } from 'chai';
+import { StyleSheetTestUtils } from 'aphrodite';
 
 
 describe("Testing the <Login /> componet", () => {
     let wrapper;
 
     beforeEach(() => {
-        wrapper = shallow(<Login />)
+        wrapper = shallow(<Login />);
+        StyleSheetTestUtils.suppressStyleInjection();
     })
+
+    afterEach(() => {
+        StyleSheetTestUtils.clearBufferAndResumeStyleInjection();
+    });
     it("Login componet loads", () => {
         expect(wrapper.render()).to.not.be.an("undefined")
     });

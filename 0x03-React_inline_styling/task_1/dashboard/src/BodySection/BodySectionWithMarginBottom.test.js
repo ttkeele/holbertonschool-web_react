@@ -2,16 +2,23 @@ import { shallow } from 'enzyme';
 import BodySectionWithMarginBottom from './BodySectionWithMarginBottom.js';
 import React from 'react';
 import "../../config/setupTests"
+import { StyleSheetTestUtils } from 'aphrodite';
 
 describe("Testing <BodySection /> componet", () => {
     let wrapper;
+
     beforeEach(() => {
         wrapper = shallow(
             <BodySectionWithMarginBottom title='test title'>
                 <p>test children node</p>
             </BodySectionWithMarginBottom>
-          );
+        );
+        StyleSheetTestUtils.suppressStyleInjection();
     })
+
+    afterEach(() => {
+        StyleSheetTestUtils.clearBufferAndResumeStyleInjection();
+    });
     it("Tests that Componet renders", () => {
         expect(wrapper.exists()).toEqual(true);
     })
