@@ -1,64 +1,81 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import { StyleSheet, css } from 'aphrodite'
+import React from "react";
+import PropTypes from "prop-types";
+import { StyleSheet, css } from "aphrodite";
 
-class NotificationItem extends React.Component {
-    render() {
-        let {
-            id,
-            type,
-            value,
-            html,
-            className,
-            markAsRead,
-        } = this.props;
+const NotificationItem = React.memo(function NotificationItem({
+  type,
+  value,
+  html,
+  markAsRead,
+  id,
+}) {
+  let listItem;
 
-        let styleLi = (type === "urgent") ? styles.urgentNotif : styles.defaultNotif;
-        
-        if (!html) {
-            return (
-                <li data-notification-type={type}
-                className={css(styleLi)}
-                >{value}</li>
-            )
-        } else {
-            return (
-                <li data-notification-type={type}
-                className={css(styleLi)}
-                dangerouslySetInnerHTML={html}
-                className={className}
-                onClick={() => markAsRead(id)}
-                ></li>
-            );
-        }
-    }
-}
+  let typeStyle = css(type === "urgent" ? styles.urgent : styles.default);
 
-const styles = StyleSheet.create({
-	defaultNotif: {
-		color: 'blue',
-	},
-	urgentNotif: {
-		color: 'red',
-	},
+  if (value) {
+    listItem = (
+      <li
+        className={typeStyle}
+        data-notification-type={type}
+        onClick={() => markAsRead(id)}
+      >
+        {value}
+      </li>
+    );
+  } else {
+    listItem = (
+      <li
+        className={typeStyle}
+        data-notification-type={type}
+        dangerouslySetInnerHTML={html}
+        onClick={() => markAsRead(id)}
+      ></li>
+    );
+  }
+
+  return listItem;
 });
 
 NotificationItem.defaultProps = {
-    type: "default",
-    value: "",
-    html: null,
-    markAsRead: () => {},
-    id: NaN
-}
+  type: "default",
+  value: "",
+  html: {},
+  markAsRead: () => {},
+  id: NaN,
+};
 
 NotificationItem.propTypes = {
-    type: PropTypes.string,
-    value: PropTypes.string,
-    html: PropTypes.shape({
-      __html: PropTypes.string,
-    }),
-    markAsRead: PropTypes.func,
-    id: PropTypes.number
-}
+  type: PropTypes.string,
+  value: PropTypes.string,
+  html: PropTypes.shape({
+    __html: PropTypes.string,
+  }),
+  markAsRead: PropTypes.func,
+  id: PropTypes.number,
+};
+
+const screenSize = {
+  small: "@media screen and (max-width: 900px)",
+};
+
+const listItemSmall = {
+  listStyle: "none",
+  borderBottom: "1px solid black",
+  padding: "10px 8px",
+  fontSize: "20px",
+};
+
+const styles = StyleSheet.create({
+  default: {
+    color: "blue",
+    [screenSize.small]: listItemSmall,
+  },
+
+  urgent: {
+    color: "red",
+    [screenSize.small]: listItemSmall,
+  },
+});
 
 export default NotificationItem;
