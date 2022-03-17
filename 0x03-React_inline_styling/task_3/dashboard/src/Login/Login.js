@@ -7,13 +7,19 @@ function Login() {
   return (
     <React.Fragment>
       <div className={css(styles.AppBody)}>
-      <p className={css(styles.leftMove)}>Login to access the full dashboard</p>
-      <div className={css(styles.leftMove)}>
-        <label className={css(styles.marRight)} htmlFor='email'>Email: </label>
-        <input className={css(styles.marRight)} name='email' type='email' id='email'></input>
-        <label className={css(styles.marRight)} htmlFor='password'>Password: </label>
-        <input className={css(styles.marRight)} name='password' type='password' id='password'></input>
-        <button>OK</button>
+      <p className={css()}>Login to access the full dashboard</p>
+      <div className={css(styles.inputContainer)}>
+        <div>
+          <label className={css([styles.inputContainer, styles.leftMove])} htmlFor='email'>Email: </label>
+          <input className={css([styles.inputContainer, styles.leftMove])} name='email' type='email' id='email'></input>
+        </div>
+        <div>
+          <label className={css([styles.inputContainer, styles.leftMove])} htmlFor='password'>Password: </label>
+          <input className={css([styles.inputContainer, styles.leftMove])} name='password' type='password' id='password'></input>
+        </div>
+        <div>
+          <button className={css([styles.inputContainer, styles.leftMove])}>OK</button>
+        </div>
       </div>
       </div>
     </React.Fragment>
@@ -31,7 +37,16 @@ const styles = StyleSheet.create({
 
   leftMove: {
     display: "flex",
+    flexDirection: 'row',
     justifyContent: "left",
-  }
+  },
+  inputContainer: {
+		'@media (max-width: 900px)': {
+      display: 'flex',
+      flexDirection: "column",
+      alignItems: "center",
+		},
+	},
 })
+
 export default Login;
