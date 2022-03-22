@@ -15,7 +15,21 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.ctrlEvent = this.ctrlEvent.bind(this);
+    this.handleDisplayDrawer = this.handleDisplayDrawer.bind(this);
+    this.handleHideDrawer = this.handleHideDrawer.bind(this);
+    this.state = { displayDrawer: false };
   }
+
+  handleDisplayDrawer() {
+    this.setState({ displayDrawer: true });
+    console.log("diplay drawer");
+  }
+
+  handleHideDrawer() {
+    this.setState({ displayDrawer: false });
+    console.log("Hide drawer");
+  }
+
   componentDidMount() {
     document.addEventListener('keydown', this.ctrlEvent);
   }
@@ -49,7 +63,12 @@ class App extends React.Component {
 
     return (
       <React.Fragment>
-        <Notifications listNotifications={listNotifications}/>
+        <Notifications
+        listNotifications={listNotifications}
+        displayDrawer={this.state.displayDrawer}
+        handleDisplayDrawer={this.handleDisplayDrawer}
+        handleHideDrawer={this.handleHideDrawer}
+        />
       <div className={css([styles.App, styles.Div])}>
         <Header />
         <div className={css([styles.AppBody, styles.Div])}>
