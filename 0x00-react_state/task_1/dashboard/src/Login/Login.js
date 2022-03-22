@@ -1,52 +1,101 @@
-import logo from '../assets/holberton_logo.jpg';
-import { getFooterCopy, getFullYear } from '../utils/utils.js'
-import React from 'react';
-import {StyleSheet, css} from 'aphrodite';
+import React, { Component } from "react";
+import { StyleSheet, css } from "aphrodite";
 
-function Login() {
-  return (
-    <React.Fragment>
-      <div className={css(styles.AppBody)}>
-      <p className={css()}>Login to access the full dashboard</p>
-      <div className={css(styles.inputContainer)}>
-        <div>
-          <label className={css([styles.inputContainer, styles.leftMove])} htmlFor='email'>Email: </label>
-          <input className={css([styles.inputContainer, styles.leftMove])} name='email' type='email' id='email'></input>
-        </div>
-        <div>
-          <label className={css([styles.inputContainer, styles.leftMove])} htmlFor='password'>Password: </label>
-          <input className={css([styles.inputContainer, styles.leftMove])} name='password' type='password' id='password'></input>
-        </div>
-        <div>
-          <button className={css([styles.inputContainer, styles.leftMove])}>OK</button>
-        </div>
+class Login extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      isLoggedIn: props.isLoggedIn,
+      email: "",
+      password: "",
+      enableSubmit: false,
+    };
+    this.handleLoginSubmit = this.handleLoginSubmit.bind(this);
+    this.handleChangeEmail = this.handleChangeEmail.bind(this);
+    this.handleChangePassword = this.handleChangePassword.bind(this);
+  }
+
+  handleLoginSubmit(event) {
+    event.preventDefault();
+    this.setState({ isLoggedIn: true });
+  }
+
+  handleChangeEmail(event) {
+    const { value } = event.target;
+    const { password } = this.state;
+
+    if (value !== "" && password !== "") this.setState({ enableSubmit: true });
+    else this.setState({ enableSubmit: false });
+
+    this.setState({ email: event.target.value });
+  }
+
+  handleChangePassword(event) {
+    const { value } = event.target;
+    const { email } = this.state;
+
+    if (email !== "" && value !== "") this.setState({ enableSubmit: true });
+    else this.setState({ enableSubmit: false });
+
+    this.setState({ password: event.target.value });
+  }
+
+  render() {
+    return (
+      <div className={css(styles.login)}>
+        <p>Login to access the full dashboard</p>
+        <form action="" onSubmit={this.handleLoginSubmit}>
+          <label htmlFor="email">Email:</label>
+          <input
+            type="email"
+            id="email"
+            name="email"
+            className={css(styles.loginInput)}
+            value={this.state.email}
+            onChange={this.handleChangeEmail}
+          />
+          <label htmlFor="password">Password:</label>
+          <input
+            type="password"
+            id="password"
+            name="password"
+            className={css(styles.loginInput)}
+            value={this.state.password}
+            onChange={this.handleChangePassword}
+          />
+          <input type="submit" disabled={!this.state.enableSubmit} />
+        </form>
       </div>
-      </div>
-    </React.Fragment>
-  );
+    );
+  }
 }
 
+const screenSize = {
+  small: "@media screen and (max-width: 900px)",
+};
+
 const styles = StyleSheet.create({
-  AppBody: {
-    padding: "36px 24px",
-    minHeight: "60vmin",
-  },
-  marRight: {
-    marginRight: "5px"
+  login: {
+    margin: "50px",
+    flexGrow: 1,
+    [screenSize.small]: {
+      marginTop: "10px",
+      marginLeft: 0,
+      marginRight: 0,
+      marginBottom: 0,
+    },
   },
 
-  leftMove: {
-    display: "flex",
-    flexDirection: 'row',
-    justifyContent: "left",
+  loginInput: {
+    marginLeft: "10px",
+    marginRight: "20px",
+    [screenSize.small]: {
+      display: "block",
+      marginLeft: 0,
+      marginTop: "10px",
+      marginBottom: "10px",
+    },
   },
-  inputContainer: {
-		'@media (max-width: 900px)': {
-      display: 'flex',
-      flexDirection: "column",
-      alignItems: "center",
-		},
-	},
-})
+});
 
 export default Login;
