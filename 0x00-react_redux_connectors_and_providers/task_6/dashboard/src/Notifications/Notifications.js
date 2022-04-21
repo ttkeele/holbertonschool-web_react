@@ -1,11 +1,7 @@
 import React, { PureComponent, Component } from "react";
 import { connect } from "react-redux";
-import {
-  fetchNotifications,
-  markAsAread,
-} from "../actions/notificationActionCreators";
+import { fetchNotifications } from "../actions/notificationActionCreators";
 import NotificationItem from "./NotificationItem";
-import { getUnreadNotifications } from "../selectors/notificationSelector";
 import PropTypes from "prop-types";
 import closeIcon from "../assets/close-icon.png";
 import { StyleSheet, css } from "aphrodite";
@@ -64,7 +60,7 @@ export class Notifications extends Component {
               Here is the list of notifications
             </p>
             <ul className={css(styles.notificationsUL)}>
-              {(!listNotifications || listNotifications.count() === 0) && (
+              {!listNotifications && (
                 <NotificationItem
                   type="noNotifications"
                   value="No new notifications for now"
@@ -72,22 +68,16 @@ export class Notifications extends Component {
               )}
 
               {listNotifications &&
-                listNotifications.valueSeq().map((notification) => {
-                  let html = notification.get("html");
-
-                  if (html) html = html.toJS();
-
-                  return (
-                    <NotificationItem
-                      key={notification.get("guid")}
-                      id={notification.get("guid")}
-                      type={notification.get("type")}
-                      value={notification.get("value")}
-                      html={html}
-                      markAsRead={markNotificationAsRead}
-                    />
-                  );
-                })}
+                Object.values(listNotifications).map((notification) => (
+                  <NotificationItem
+                    key={notification.guid}
+                    id={notification.guid}
+                    type={notification.type}
+                    value={notification.value}
+                    html={notification.html}
+                    markAsRead={markNotificationAsRead}
+                  />
+                ))}
             </ul>
           </div>
         )}
@@ -228,16 +218,13 @@ const styles = StyleSheet.create({
 });
 
 const mapStateToProps = (state) => {
-  const unreadNotifications = getUnreadNotifications(state);
-
   return {
-    listNotifications: unreadNotifications,
+    listNotifications: state.notifications.get("messages"),
   };
 };
 
 const mapDispatchToProps = {
   fetchNotifications,
-  markNotificationAsRead: markAsAread,
 };
 
 // export default Notifications;
