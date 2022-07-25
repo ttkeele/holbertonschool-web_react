@@ -1,27 +1,16 @@
-import React, { PureComponent } from "react";
+import React from "react";
 import NotificationItem from "./NotificationItem";
 import PropTypes from "prop-types";
 import NotificationItemShape from "./NotificationItemShape";
+import { css } from 'aphrodite';
+import { StyleSheet } from "aphrodite";
 import closeIcon from "../assets/close-icon.png";
-import { StyleSheet, css } from "aphrodite";
+import { PureComponent } from 'react';
 
 class Notifications extends PureComponent {
   constructor(props) {
     super(props);
-    // this.markAsRead = this.markAsRead.bind(this);
   }
-
-  // shouldComponentUpdate(nextProps) {
-  //   return (
-  //     nextProps.listNotifications.length >
-  //       this.props.listNotifications.length ||
-  //     nextProps.displayDrawer !== this.props.displayDrawer
-  //   );
-  // }
-
-  // markAsRead(id) {
-  //   console.log(`Notification ${id} has been marked as read`);
-  // }
 
   render() {
     const {
@@ -46,7 +35,7 @@ class Notifications extends PureComponent {
           <p className={menuPStyle}>Your notifications</p>
         </div>
         {displayDrawer && (
-          <div className={css(styles.notifications)} id="Notifications">
+          <div className={css(styles.Notifications)} id="Notifications">
             <button
               style={{
                 background: "transparent",
@@ -61,20 +50,18 @@ class Notifications extends PureComponent {
               <img
                 src={closeIcon}
                 alt="close-icon"
-                className={css(styles.notificationsButtonImage)}
+                className={css(styles.NotificationsButtonImg)}
               />
             </button>
-            <p className={css(styles.notificationsP)}>
+            <p className={css(styles.NotificationsP)}>
               Here is the list of notifications
             </p>
             <ul className={css(styles.notificationsUL)}>
               {listNotifications.length === 0 && (
-                <NotificationItem
-                  type="noNotifications"
-                  value="No new notifications for now"
-                />
+                <NotificationItem type="noNotifications"
+                value="No new notification for now"
+          />
               )}
-
               {listNotifications.map((notification) => (
                 <NotificationItem
                   key={notification.id}
@@ -109,15 +96,11 @@ Notifications.propTypes = {
   markNotificationAsRead: PropTypes.func,
 };
 
-const cssVars = {
-  mainColor: "#e01d3f",
-};
-
 const screenSize = {
   small: "@media screen and (max-width: 900px)",
 };
 
-const opacityKeyframes = {
+const opacityKey = {
   from: {
     opacity: 0.5,
   },
@@ -127,7 +110,7 @@ const opacityKeyframes = {
   },
 };
 
-const translateYKeyframes = {
+const transformYKey = {
   "0%": {
     transform: "translateY(0)",
   },
@@ -145,13 +128,13 @@ const translateYKeyframes = {
   },
 };
 
-const borderKeyframes = {
+const borderKey = {
   "0%": {
-    border: `3px dashed deepSkyBlue`,
+    border: `3px dashed blue`,
   },
 
   "100%": {
-    border: `3px dashed ${cssVars.mainColor}`,
+    border: `3px dashed red`,
   },
 };
 
@@ -161,7 +144,7 @@ const styles = StyleSheet.create({
     backgroundColor: "#fff8f8",
     ":hover": {
       cursor: "pointer",
-      animationName: [opacityKeyframes, translateYKeyframes],
+      animationName: [opacityKey, transformYKey],
       animationDuration: "1s, 0.5s",
       animationIterationCount: 3,
     },
@@ -176,18 +159,16 @@ const styles = StyleSheet.create({
     marginRight: "8px",
   },
 
-  notifications: {
+  Notifications: {
     float: "right",
-    // border: `3px dashed ${cssVars.mainColor}`,
     padding: "10px",
     marginBottom: "20px",
-    animationName: [borderKeyframes],
+    animationName: [borderKey],
     animationDuration: "0.8s",
     animationIterationCount: 1,
     animationFillMode: "forwards",
     ":hover": {
-      border: `3px dashed deepSkyBlue`,
-      // animationFillMode: "forwards",
+      border: `3px dashed blue`,
     },
     [screenSize.small]: {
       float: "none",
@@ -197,21 +178,19 @@ const styles = StyleSheet.create({
       fontSize: "20px",
       ":hover": {
         border: "none",
-        // animationFillMode: "forwards",
       },
       position: "absolute",
       background: "white",
       height: "110vh",
       width: "100vw",
-      zIndex: 10,
     },
   },
 
-  notificationsButtonImage: {
+  NotificationsButtonImg: {
     width: "10px",
   },
 
-  notificationsP: {
+  NotificationsP: {
     margin: 0,
     marginTop: "15px",
   },

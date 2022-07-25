@@ -2,7 +2,8 @@ import React from "react";
 import CourseListRow from "./CourseListRow";
 import PropTypes from "prop-types";
 import CourseShape from "./CourseShape";
-import { StyleSheet, css } from "aphrodite";
+import { StyleSheet } from "aphrodite";
+import { css } from 'aphrodite';
 
 function CourseList({ listCourses }) {
   return (
@@ -22,7 +23,6 @@ function CourseList({ listCourses }) {
             isHeader={false}
           />
         )}
-
         {listCourses.map((course) => (
           <CourseListRow
             key={course.id}
@@ -44,13 +44,9 @@ CourseList.propTypes = {
   listCourses: PropTypes.arrayOf(CourseShape),
 };
 
-const cssVars = {
-  borderTableColor: "rgb(170, 170, 170);",
-};
-
 const styles = StyleSheet.create({
   list: {
-    border: `1px solid ${cssVars.borderTableColor}`,
+    border: `1px solid gray`,
     borderCollapse: "collapse",
     width: "95%",
     margin: "40px auto 0 auto",

@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
-import { StyleSheet, css } from "aphrodite";
+import { StyleSheet } from "aphrodite";
+import { css } from 'aphrodite';
 
 class BodySection extends Component {
   constructor(props) {
@@ -42,7 +43,6 @@ const styles = StyleSheet.create({
       paddingBottom: "20px",
     },
   },
-
   bodySectionH2: {
     width: "100%",
   },

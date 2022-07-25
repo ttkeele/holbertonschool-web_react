@@ -1,8 +1,10 @@
-import { shallow, mount } from "enzyme";
+import { shallow } from "enzyme";
 import React from "react";
 import Footer from "./Footer";
-import AppContext from "../App/AppContext";
-import { user, logOut } from "../App/AppContext";
+import { user } from '../App/AppContext';
+import { logOut } from '../App/AppContext';
+import AppContext from '../App/AppContext';
+import { mount } from 'enzyme';
 
 describe("<Footer />", () => {
   it("Footer renders without crashing", () => {
@@ -14,8 +16,7 @@ describe("<Footer />", () => {
     expect(wrapper.find("div.footer p")).toHaveLength(1);
     expect(wrapper.find("div.footer p").text()).toContain("Copyright");
   });
-
-  it("verify that the link is not displayed when the user is logged out within the context", () => {
+  it("Verify that the link is not displayed when the user is logged out within the context", () => {
     const wrapper = mount(
       <AppContext.Provider value={{ user, logOut }}>
         <Footer />
@@ -23,12 +24,9 @@ describe("<Footer />", () => {
     );
     expect(wrapper.find("div.footer a")).toHaveLength(0);
   });
-
   it("verify that the link is displayed when the user is logged in within the context", () => {
     const wrapper = mount(
-      <AppContext.Provider
-        value={{ user: { ...user, isLoggedIn: true }, logOut }}
-      >
+      <AppContext.Provider value={{ user: { ...user, isLoggedIn: true}, logOut }}>
         <Footer />
       </AppContext.Provider>
     );

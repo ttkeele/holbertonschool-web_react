@@ -1,5 +1,7 @@
-import React, { Component } from "react";
-import { StyleSheet, css } from "aphrodite";
+import React from "react";
+import { StyleSheet } from "aphrodite";
+import { css } from 'aphrodite';
+import { Component } from 'react';
 
 class Login extends Component {
   constructor(props) {
@@ -16,29 +18,23 @@ class Login extends Component {
 
   handleLoginSubmit(event) {
     event.preventDefault();
-
     const { email, password } = this.state;
-
     this.props.logIn(email, password);
   }
 
   handleChangeEmail(event) {
     const { value } = event.target;
     const { password } = this.state;
-
     if (value !== "" && password !== "") this.setState({ enableSubmit: true });
     else this.setState({ enableSubmit: false });
-
     this.setState({ email: event.target.value });
   }
 
   handleChangePassword(event) {
     const { value } = event.target;
     const { email } = this.state;
-
     if (email !== "" && value !== "") this.setState({ enableSubmit: true });
     else this.setState({ enableSubmit: false });
-
     this.setState({ password: event.target.value });
   }
 

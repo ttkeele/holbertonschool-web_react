@@ -1,6 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { StyleSheet, css } from "aphrodite";
+import { css } from 'aphrodite';
+import { StyleSheet } from "aphrodite";
 
 const NotificationItem = React.memo(function NotificationItem({
   type,
@@ -10,7 +11,6 @@ const NotificationItem = React.memo(function NotificationItem({
   id,
 }) {
   let listItem;
-
   let typeStyle = css(type === "urgent" ? styles.urgent : styles.default);
 
   if (value) {
@@ -44,7 +44,6 @@ const NotificationItem = React.memo(function NotificationItem({
       ></li>
     );
   }
-
   return listItem;
 });
 

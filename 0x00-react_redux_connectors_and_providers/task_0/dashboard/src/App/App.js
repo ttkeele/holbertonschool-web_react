@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import { connect } from "react-redux";
 import Notifications from "../Notifications/Notifications";
 import Header from "../Header/Header";
 import BodySection from "../BodySection/BodySection";
@@ -10,8 +9,10 @@ import Footer from "../Footer/Footer";
 import PropTypes from "prop-types";
 import { getLatestNotification } from "../utils/utils";
 import { StyleSheet, css } from "aphrodite";
-import { user, logOut } from "./AppContext";
 import AppContext from "./AppContext";
+import { user } from "./AppContext";
+import { logOut } from "./AppContext";
+import { connect } from "react-redux";
 
 const listCourses = [
   { id: 1, name: "ES6", credit: 60 },
@@ -19,7 +20,7 @@ const listCourses = [
   { id: 3, name: "React", credit: 40 },
 ];
 
-export const listNotificationsInitialState = [
+export const listNotificationsOnset = [
   { id: 1, type: "default", value: "New course available" },
   { id: 2, type: "urgent", value: "New resume available" },
   { id: 3, type: "urgent", html: { __html: getLatestNotification() } },
@@ -40,7 +41,7 @@ class App extends Component {
       displayDrawer: false,
       user,
       logOut: this.logOut,
-      listNotifications: listNotificationsInitialState,
+      listNotifications: listNotificationsOnset,
     };
   }
 
@@ -75,8 +76,8 @@ class App extends Component {
 
   markNotificationAsRead(id) {
     this.setState({
-      listNotifications: this.state.listNotifications.filter((notification) => {
-        return notification.id !== id;
+      listNotifications: this.state.listNotifications.filter((Notification) => {
+        return Notification.id !== id;
       }),
     });
   }
@@ -91,9 +92,7 @@ class App extends Component {
 
   render() {
     const { user, logOut, displayDrawer, listNotifications } = this.state;
-
-    const { isLoggedIn } = this.props;
-
+    const  { isLoggedIn } = this.props;
     const value = { user, logOut };
 
     return (
@@ -110,7 +109,7 @@ class App extends Component {
             <Header />
           </div>
           <div className={css(styles.appBody)}>
-            {!isLoggedIn ? (
+            { !isLoggedIn ? (
               <BodySectionWithMarginBottom title="Log in to continue">
                 <Login logIn={this.logIn} />
               </BodySectionWithMarginBottom>
@@ -122,12 +121,18 @@ class App extends Component {
           </div>
           <BodySection title="News from the School">
             <p>
-              Lorem Ipsum...
-              Almost done with school!!! so excited!!!
-              Lorem Ipsum...
+              Lorem Ipsum is simply dummy text of the printing 
+              and typesetting industry. Lorem Ipsum has been the 
+              industry's standard dummy text ever since the 1500s, 
+              when an unknown printer took a galley of type and scrambled 
+              it to make a type specimen book. It has survived not only 
+              five centuries, but also the leap into electronic 
+              typesetting, remaining essentially unchanged. It was popularised 
+              in the 1960s with the release of Letraset sheets containing 
+              Lorem Ipsum passages, and more recently with desktop publishing 
+              software like Aldus PageMaker including versions of Lorem Ipsum.
             </p>
           </BodySection>
-
           <div className={css(styles.footer)}>
             <Footer />
           </div>
@@ -141,10 +146,6 @@ App.defaultProps = {};
 
 App.propTypes = {};
 
-const cssVars = {
-  mainColor: "#e01d3f",
-};
-
 const screenSize = {
   small: "@media screen and (max-width: 900px)",
 };
@@ -157,7 +158,7 @@ const styles = StyleSheet.create({
   },
 
   app: {
-    borderBottom: `3px solid ${cssVars.mainColor}`,
+    borderBottom: `3px solid red`,
   },
 
   appBody: {
@@ -166,13 +167,11 @@ const styles = StyleSheet.create({
   },
 
   footer: {
-    borderTop: `3px solid ${cssVars.mainColor}`,
+    borderTop: `3px solid red`,
     width: "100%",
     display: "flex",
     justifyContent: "center",
-    textAlign: "center",
     position: "fixed",
-    paddingBottom: "10px",
     bottom: 0,
     fontStyle: "italic",
     [screenSize.small]: {
@@ -183,10 +182,10 @@ const styles = StyleSheet.create({
 
 export const mapStateToProps = (state) => {
   return {
-    isLoggedIn: state.get("isUserLoggedIn"),
+    isLoggedIn: state.get("isUserLoggedIn")
   };
-};
+}
 
-// export default App;
+//export default App;
 
 export default connect(mapStateToProps)(App);

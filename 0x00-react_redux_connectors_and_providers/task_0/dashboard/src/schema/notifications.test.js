@@ -1,32 +1,33 @@
-import { getAllNotificationsByUser, normalizedData } from "./notifications";
+import { getAllNotificationsByUser } from "./notifications";
+import { normalizedInfo } from './notifications';
 
-describe("notification_tests", function () {
-  describe("reads data from JSON", function () {
-    it("Should return filtered list", function () {
+describe("notifications_tests", function () {
+  describe("read data from json", function () {
+    it(" function should return a list", function () {
       const userId = "5debd764a7c57c7839d722e9";
-      const expectedReturn = [
-        {
-          guid: "2d8e40be-1c78-4de0-afc9-fcc147afd4d2",
-          isRead: true,
-          type: "urgent",
-          value:
-            "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt.",
-        },
-        {
-          guid: "280913fe-38dd-4abd-8ab6-acdb4105f922",
-          isRead: false,
-          type: "urgent",
-          value:
-            "Non diam phasellus vestibulum lorem sed risus ultricies. Tellus mauris a diam maecenas sed",
-        },
+      const shouldReturn = [
+        
+          {
+            guid: "2d8e40be-1c78-4de0-afc9-fcc147afd4d2",
+            isRead: true,
+            type: "urgent",
+            value:
+              "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt."
+          },
+          {
+            guid: "280913fe-38dd-4abd-8ab6-acdb4105f922",
+            isRead: false,
+            type: "urgent",
+            value:
+              "Non diam phasellus vestibulum lorem sed risus ultricies. Tellus mauris a diam maecenas sed"
+          },
       ];
-      const filtered = getAllNotificationsByUser(userId);
-      expect(filtered).toEqual(expect.arrayContaining(expectedReturn));
+      const goodList = getAllNotificationsByUser(userId);
+      expect(goodList).toEqual(expect.arrayContaining(shouldReturn));
     });
-
     describe("reads data from JSON and normalizes it", function () {
       it("normalized data has a correct result array", function () {
-        const expectedReturn = [
+        const shouldContain = [
           "5debd76480edafc8af244228",
           "5debd764507712e7a1307303",
           "5debd76444dd4dafea89d53b",
@@ -41,52 +42,44 @@ describe("notification_tests", function () {
           "5debd764af0fdd1fc815ad9b",
           "5debd76468cb5b277fd125f4",
           "5debd764de9fa684468cdc0b",
-        ];
-
-        const result = normalizedData.result;
-
-        expect(result).toEqual(expect.arrayContaining(expectedReturn));
+        ]
+        const output = normalizedInfo.output;
+        expect(output).toEqual(expect.arrayContaining(shouldContain));
       });
       it("has a correct users entity", function () {
-        const expectedReturn = {
+        const shouldContain = {
           age: 25,
           email: "poole.sanders@holberton.nz",
           id: "5debd764a7c57c7839d722e9",
           name: { first: "Poole", last: "Sanders" },
           picture: "http://placehold.it/32x32",
         };
-
-        const user = normalizedData.entities.users["5debd764a7c57c7839d722e9"];
-
-        expect(user).toEqual(expectedReturn);
+        const user = normalizedInfo.entities.users["5debd764a7c57c7839d722e9"];
+        expect(user).toEqual(shouldContain);
       });
       it("has a correct messages entity", function () {
-        const expectedReturn = {
+        const shouldContain = {
           guid: "efb6c485-00f7-4fdf-97cc-5e12d14d6c41",
           isRead: false,
           type: "default",
           value: "Cursus risus at ultrices mi.",
         };
-
         const message =
-          normalizedData.entities.messages[
+          normalizedInfo.entities.messages[
             "efb6c485-00f7-4fdf-97cc-5e12d14d6c41"
           ];
-
-        expect(message).toEqual(expectedReturn);
+        expect(message).toEqual(shouldContain);
       });
       it("has a correct notifications", function () {
-        const expectedReturn = {
+        const shouldContain = {
           author: "5debd764f8452ef92346c772",
           context: "3068c575-d619-40af-bf12-dece1ee18dd3",
           id: "5debd7642e815cd350407777",
         };
-
         const notification =
-          normalizedData.entities.notifications["5debd7642e815cd350407777"];
-
-        expect(notification).toEqual(expectedReturn);
-      });
-    });
-  });
+          normalizedInfo.entities.notifications["5debd7642e815cd350407777"];
+        expect(notification).toEqual(shouldContain);
+      })
+    })
+  })
 });

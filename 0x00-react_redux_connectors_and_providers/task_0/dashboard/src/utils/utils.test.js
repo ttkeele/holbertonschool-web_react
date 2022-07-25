@@ -10,7 +10,6 @@ describe("utils_tests", function () {
   describe("getFooterCopy", function () {
     const trueMsg = "Holberton School";
     const falseMsg = "Holberton School main dashboard";
-
     it("Should return true message", function () {
       const msg = getFooterCopy(true);
       expect(msg).toEqual(trueMsg);

@@ -20,7 +20,6 @@ describe("<CourseListRow />", () => {
     );
     wrapper.update();
     const item = wrapper.find("th");
-
     expect(item).toHaveLength(1);
     expect(item.prop("colSpan")).toEqual("2");
   });
@@ -34,7 +33,6 @@ describe("<CourseListRow />", () => {
     );
     wrapper.update();
     const item = wrapper.find("th");
-
     expect(item).toHaveLength(2);
     expect(item.first().text()).toEqual("test");
     expect(item.at(1).text()).toEqual("second");
@@ -49,7 +47,6 @@ describe("<CourseListRow />", () => {
     );
     wrapper.update();
     const item = wrapper.find("tr");
-
     expect(item).toHaveLength(1);
     expect(item.children("td")).toHaveLength(2);
   });

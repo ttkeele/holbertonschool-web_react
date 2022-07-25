@@ -1,18 +1,13 @@
-import { Map, fromJS } from "immutable";
-import courseReducer, { initialCourseState } from "./courseReducer";
-import {
-  FETCH_COURSE_SUCCESS,
-  SELECT_COURSE,
-  UNSELECT_COURSE,
-} from "../actions/courseActionTypes";
-
+import { Map } from "immutable";
+import courseReducer, { defaultCourseState } from "./courseReducer";
+import { FETCH_COURSE_SUCCESS, SELECT_COURSE, UNSELECT_COURSE } from "../actions/courseActionTypes";
 import coursesNormalizer from "../schema/courses";
+import { fromJS } from "immutable";
 
 describe("courseReducer tests", function () {
   it("Tests that the default state returns an empty arr", function () {
     const state = courseReducer(undefined, {});
-
-    expect(state).toEqual(Map(initialCourseState));
+    expect(state).toEqual(Map(defaultCourseState));
   });
   it("Tests that FETCH_COURSE_SUCCESS returns the data passed", function () {
     const action = {
@@ -35,7 +30,6 @@ describe("courseReducer tests", function () {
         },
       ],
     };
-
     const expectedData = [
       {
         id: 1,
@@ -56,7 +50,6 @@ describe("courseReducer tests", function () {
         credit: 40,
       },
     ];
-
     const state = courseReducer(undefined, action);
     expect(state.toJS()).toEqual(coursesNormalizer(expectedData));
   });
@@ -81,12 +74,10 @@ describe("courseReducer tests", function () {
         credit: 40,
       },
     ];
-
     const action = {
       type: SELECT_COURSE,
       index: 2,
     };
-
     const expectedData = [
       {
         id: 1,
@@ -107,12 +98,10 @@ describe("courseReducer tests", function () {
         credit: 40,
       },
     ];
-
     const state = courseReducer(
       fromJS(coursesNormalizer(initialState)),
       action
     );
-
     expect(state.toJS()).toEqual(coursesNormalizer(expectedData));
   });
   it("Tests that UNSELECT_COURSE returns the data with the right item updated", function () {
@@ -136,12 +125,10 @@ describe("courseReducer tests", function () {
         credit: 40,
       },
     ];
-
     const action = {
       type: UNSELECT_COURSE,
       index: 2,
     };
-
     const expectedData = [
       {
         id: 1,
@@ -162,12 +149,10 @@ describe("courseReducer tests", function () {
         credit: 40,
       },
     ];
-
     const state = courseReducer(
       fromJS(coursesNormalizer(initialState)),
       action
     );
-
     expect(state.toJS()).toEqual(coursesNormalizer(expectedData));
   });
 });
