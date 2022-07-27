@@ -1,5 +1,5 @@
 import React from "react";
-import holberton_logo from "../assets/holb_logo.jpg";
+import holberton_logo from "../assets/holberton_logo.jpg";
 import { StyleSheet } from "aphrodite";
 import { css } from 'aphrodite';
 import AppContext from "../App/AppContext";
